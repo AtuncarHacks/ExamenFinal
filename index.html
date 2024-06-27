@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Kitchen</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Digital Kitchen</h1>
+    <h2>Select Ingredients</h2>
+    <h2>Chicken Garlic</h2>
+    <ul>
+      <li>Chicken</li>
+      <li>Garlic</li>
+      <li>Olive Oil</li>
+    <div>
+      <div>
+        <h2>Tomato Basil Salad</h2>
+        <ul>
+          <li>Tomato</li>
+          <li>Basil</li>
+          <li>Olive Oil</li>
+        </ul>
+      <div v-for="ingredient in ingredients" :key="ingredient">
+        <input type="checkbox" :value="ingredient" v-model="selectedIngredients"> {{ ingredient }}
+      </div>
+    </div>
+    <button @click="fetchRecipe">Cook</button>
+    <div v-if="recipe">
+      <h3>{{ recipe.name }}</h3>
+      <img :src="recipe.image || defaultImage" alt="Recipe Image">
+      <p>{{ recipe.description }}</p>
+    </div>
+    <div v-else-if="noResults">
+      <p>NO hay resultados</p>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
